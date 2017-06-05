@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 import IdeaList from './components/IdeaList';
+import SubmitIdea from './components/SubmitIdea';
 
 const client = new ApolloClient({
+  dataIdFromObject: (o => o.id),
   networkInterface: createNetworkInterface({
-    uri: 'http://192.168.0.14:8000/graphql',
+    uri: 'http://192.168.8.237:8000/graphql'
   }),
 });
 
@@ -18,6 +20,7 @@ class App extends Component {
             <h1>Ideatr</h1>
           </div>
           <IdeaList />
+          <SubmitIdea />
         </div>
       </ApolloProvider>
     );
