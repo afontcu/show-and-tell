@@ -8,20 +8,23 @@ class SubmitIdeaContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      userName: '',
-      summary: ''
-    };
+    this.state = this.createBlankState();
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  createBlankState() {
+    return {
+      userName: '',
+      summary: '',
+      explanation: ''
+    };
+  }
 
   handleInputChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
-
 
   handleSubmit(event) {
     console.log(this.state);
@@ -30,7 +33,8 @@ class SubmitIdeaContainer extends React.Component {
     this.props.mutate({
       variables: {
         userName: this.state.userName,
-        summary: this.state.summary
+        summary: this.state.summary,
+        explanation: this.state.explanation
       },
       update: (store, { data: { createIdea } }) => {
         // Read the data from our cache for this query.
@@ -46,10 +50,7 @@ class SubmitIdeaContainer extends React.Component {
     .then(({ data }) => {
       console.log('ok', data);
 
-      this.setState({
-        userName: '',
-        summary: ''
-      });
+      this.setState(this.createBlankState());
     })
     .catch((error) => {
         console.log('there was an error sending the query', error);
@@ -59,10 +60,11 @@ class SubmitIdeaContainer extends React.Component {
   render() {
       return (
           <SubmitIdea
-            handleInputChange={this.handleInputChange} 
-            onSubmit={this.handleSubmit} 
-            userName={this.state.userName} 
+            handleInputChange={this.handleInputChange}
+            onSubmit={this.handleSubmit}
+            userName={this.state.userName}
             summary={this.state.summary}
+            explanation={this.state.explanation}
           />
       );
   }

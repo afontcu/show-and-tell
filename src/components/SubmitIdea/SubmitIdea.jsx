@@ -23,6 +23,13 @@ function SubmitIdea(props) {
                 onChange={props.handleInputChange}
                 name="summary"
                 placeholder="What is your idea?" />
+            <textarea
+                className="SubmitIdea__input"
+                required
+                value={props.explanation}
+                onChange={props.handleInputChange}
+                name="explanation"
+                placeholder="Describe it in a few words" />
             <input 
                 className="SubmitIdea__button"
                 type="submit"

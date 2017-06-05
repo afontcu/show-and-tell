@@ -9,6 +9,7 @@ export const IdeaListQuery = gql`
           userName,
           summary,
           upvotes,
+          explanation,
         }
       }
     }

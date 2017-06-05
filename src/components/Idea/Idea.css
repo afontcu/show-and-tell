@@ -1,9 +1,6 @@
 .Idea {
     border-bottom: 1px solid #ddd;
     padding: 20px;
-    display: flex;
-    align-items: center;
-
 }
 
 .Idea:hover {
@@ -23,6 +20,11 @@
 
 .Idea--upvoted .Idea__upvotes {
     color: white;
+}
+
+.Idea__header {
+    display: flex;
+    align-items: center;
 }
 
 .Idea__author {
