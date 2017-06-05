@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import SubmitIdea from './SubmitIdea';
 import { IdeaListQuery } from '../../queries/IdeaListQuery';
-import { createIdeaQuery } from '../../queries/CreateIdeaQuery';
+import { CreateIdeaMutation } from '../../queries/CreateIdeaMutation';
 
 class SubmitIdeaContainer extends React.Component {
 
@@ -15,7 +15,6 @@ class SubmitIdeaContainer extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
 
@@ -38,18 +37,19 @@ class SubmitIdeaContainer extends React.Component {
         const data = store.readQuery({ query: IdeaListQuery });
 
         // Add our comment from the mutation to the end.
-        data.allIdeas.edges.push({
-          node: createIdea.idea,
-          __typename: "IdeaNodeEdge" // FIXME: JUST PLEASE
-        });
+        data.allIdeas.edges.push(createIdea.ideaEdge);
 
         // Write our data back to the cache.
         store.writeQuery({ query: IdeaListQuery, data });
       }
     })
     .then(({ data }) => {
-        console.log('ok', data);
-        
+      console.log('ok', data);
+
+      this.setState({
+        userName: '',
+        summary: ''
+      });
     })
     .catch((error) => {
         console.log('there was an error sending the query', error);
@@ -68,4 +68,4 @@ class SubmitIdeaContainer extends React.Component {
   }
 }
 
-export default graphql(createIdeaQuery)(SubmitIdeaContainer);
+export default graphql(CreateIdeaMutation)(SubmitIdeaContainer);
