@@ -1,6 +1,7 @@
 import React from 'react';
 import Idea from './Idea';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import { UpvoteIdeaQuery } from '../../queries/UpvoteIdeaQuery';
 // const nl2br = require('react-nl2br');
 
 const LOCAL_STORAGE_PREFIX = 'voted-item-';
@@ -16,7 +17,6 @@ class IdeaContainer extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-
   }
 
   hasBeenUpvoted() {
@@ -43,7 +43,8 @@ class IdeaContainer extends React.Component {
             isUpvoted: true
           });
 
-      }).catch((error) => {
+      })
+      .catch((error) => {
           console.log('there was an error sending the query', error);
       });
     } else {
@@ -54,7 +55,7 @@ class IdeaContainer extends React.Component {
   render() {
     
     return (
-        <Idea 
+        <Idea
             isUpvoted={this.state.isUpvoted}
             upvotes={this.state.upvotes}
             summary={this.props.idea.summary}
@@ -65,15 +66,4 @@ class IdeaContainer extends React.Component {
   }
 }
 
-
-const upvote = gql`
-  mutation IdeaVoteMutation ($IdeaID: String!) {
-    upvoteIdea(input: { id: $IdeaID }) {
-      idea {
-          upvotes
-      }
-    }
-  }
-`;
-
-export default graphql(upvote)(IdeaContainer);
+export default graphql(UpvoteIdeaQuery)(IdeaContainer);
