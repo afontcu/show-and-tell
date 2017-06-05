@@ -4,11 +4,11 @@ import './IdeaList.css';
 
 function IdeaList(props) {
     return (
-    <ul className="IdeaList">
+    <div className="IdeaList">
         {props.list.edges.map((edge) => edge.node).map((idea) => {
             return <Idea key={idea.id} idea={idea} />;
         })}
-    </ul>
+    </div>
     );
 }
 
