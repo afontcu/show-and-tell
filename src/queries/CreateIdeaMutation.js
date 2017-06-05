@@ -1,10 +1,12 @@
 import { gql } from 'react-apollo';
 
-export const createIdeaQuery = gql`
+export const CreateIdeaMutation = gql`
   mutation createIdea ($userName: String!, $summary: String!) {
     createIdea(input: { userName: $userName, summary: $summary }) {
-      idea {
-          id, userName, summary, upvotes
+      ideaEdge {
+          node {
+            id, userName, summary, upvotes
+          }
       }
     }
   }
