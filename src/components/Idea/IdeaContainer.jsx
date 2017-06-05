@@ -1,8 +1,7 @@
 import React from 'react';
 import Idea from './Idea';
-import { graphql } from 'react-apollo';
-import { UpvoteIdeaMutation } from '../../queries/UpvoteIdeaMutation';
-// const nl2br = require('react-nl2br');
+import { graphql, compose } from 'react-apollo';
+import { UpvoteIdeaMutation, DownvoteIdeaMutation } from '../../queries/VoteIdeaMutation';
 
 const LOCAL_STORAGE_PREFIX = 'voted-item-';
 const LOCAL_STORAGE_UPVOTED_VALUE = 'upvoted';
@@ -23,40 +22,48 @@ class IdeaContainer extends React.Component {
       window.localStorage.getItem(LOCAL_STORAGE_PREFIX + this.props.idea.id);
   }
 
-  handleClick() {
-    if (!this.hasBeenUpvoted()) {
-      this.props.mutate({
-        variables: { IdeaID: this.props.idea.id }
-      })
-      .then(() => {
-          window.localStorage.setItem(
-            LOCAL_STORAGE_PREFIX + this.props.idea.id,
-            LOCAL_STORAGE_UPVOTED_VALUE
-          );
+  toggleVotedState() {
+    const isUpvoted = !this.state.isUpvoted;
+    this.setState({isUpvoted});
 
-          this.setState({
-            isUpvoted: true
-          });
-      })
-      .catch((error) => {
-          console.log('there was an error sending the query', error);
-      });
+    const itemKey = LOCAL_STORAGE_PREFIX + this.props.idea.id;
+    if (isUpvoted) {
+      window.localStorage.setItem(itemKey, LOCAL_STORAGE_UPVOTED_VALUE);
     } else {
-      alert("ke ases payaso");
+      window.localStorage.removeItem(itemKey);
     }
+  }
+
+  handleClick() {
+    let fn = this.props.UpvoteIdeaMutation;
+    if (this.hasBeenUpvoted()) {
+      fn = this.props.DownvoteIdeaMutation;
+    }
+
+    fn({variables: { IdeaID: this.props.idea.id }})
+    .then(() => {
+      this.toggleVotedState();
+    })
+    .catch((error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   render() {
     return (
-        <Idea
-            isUpvoted={this.state.isUpvoted}
-            upvotes={this.props.idea.upvotes}
-            summary={this.props.idea.summary}
-            userName={this.props.idea.userName}
-            onClick={this.handleClick}
-        />
+      <Idea
+        isUpvoted={this.state.isUpvoted}
+        upvotes={this.props.idea.upvotes}
+        summary={this.props.idea.summary}
+        explanation={this.props.idea.explanation}
+        userName={this.props.idea.userName}
+        onClick={this.handleClick}
+      />
     );
   }
 }
 
-export default graphql(UpvoteIdeaMutation)(IdeaContainer);
+export default compose(
+  graphql(UpvoteIdeaMutation, { name: 'UpvoteIdeaMutation' }),
+  graphql(DownvoteIdeaMutation, { name: 'DownvoteIdeaMutation' })
+)(IdeaContainer);
