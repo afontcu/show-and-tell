@@ -1,12 +1,14 @@
 import React from 'react';
+import './SubmitIdea.css';
 
 function SubmitIdea(props) {
     return (
     <div>
         <br /><br />
         <h2>Submit a new Idea</h2>
-        <form action="#" onSubmit={props.onSubmit}>
+        <form className="SubmitIdea" action="#" onSubmit={props.onSubmit}>
             <input 
+                className="SubmitIdea__input"
                 required
                 type="text" 
                 value={props.userName}
@@ -14,13 +16,17 @@ function SubmitIdea(props) {
                 name="userName"
                 placeholder="Who are you?" />
             <input
+                className="SubmitIdea__input"
                 required
                 type="text" 
                 value={props.summary}
                 onChange={props.handleInputChange}
                 name="summary"
                 placeholder="What is your idea?" />
-            <input type="submit" value="Submit Idea" />
+            <input 
+                className="SubmitIdea__button"
+                type="submit"
+                value="Submit Idea" />
         </form>
     </div>
     );
