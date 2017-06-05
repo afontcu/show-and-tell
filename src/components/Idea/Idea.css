@@ -1,0 +1,31 @@
+.Idea {
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+
+}
+
+.Idea:hover {
+    cursor: pointer;
+    background-color: #e1e1e2;
+}
+
+.Idea:last-of-type {
+    border-bottom: 0;
+}
+
+.Idea__author {
+    
+}
+
+.Idea__summary {
+
+}
+
+.Idea__upvotes {
+    margin-left: auto;
+    font-size: 2em;
+    color: #888;
+    font-weight: bold;
+}
