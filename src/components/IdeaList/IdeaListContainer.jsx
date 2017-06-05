@@ -25,10 +25,16 @@ export default graphql(gql`
     allIdeas(orderBy: "-upvotes") {
       edges {
         node {
-          id, userName, summary, upvotes, explanation, comments {
+          id,
+          userName,
+          summary,
+          upvotes,
+          explanation,
+          comments {
             edges {
               node {
-                userName, message,
+                userName,
+                message,
               }
             }
           }
