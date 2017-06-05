@@ -1,3 +1,3 @@
-import Idea from './Idea';
+import IdeaContainer from './IdeaContainer';
 
-export default Idea;
+export default IdeaContainer;

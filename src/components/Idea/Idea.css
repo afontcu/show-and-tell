@@ -15,6 +15,16 @@
     border-bottom: 0;
 }
 
+.Idea--upvoted,
+.Idea--upvoted:hover {
+    background-color: green;
+    color: white;
+}
+
+.Idea--upvoted .Idea__upvotes {
+    color: white;
+}
+
 .Idea__author {
     
 }
