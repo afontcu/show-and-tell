@@ -35,7 +35,7 @@
     color: #aaa;
 }
 
-.Idea__author {
+.Idea__metainfo {
     text-align: left;
     font-size: 0.8em;
     margin-top: 10px;
@@ -43,7 +43,7 @@
     font-style: italic;
 }
 
-.Idea__author strong {
+.Idea__author {
     color: #888;
     font-style: normal;
 }

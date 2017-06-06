@@ -7,13 +7,15 @@ function Idea(props) {
     <div
       className={"Idea " + (props.isUpvoted ? 'Idea--upvoted' : '')}
       onClick={props.onClick}>
-      <span className="Idea__header">
+      <div className="Idea__header">
         <div>
           <p className="Idea__summary">{props.summary}</p>
-          <p className="Idea__author">(proposada per <strong>{props.userName}</strong>)</p>
+          <p className="Idea__metainfo">
+            (proposada per <span className="Idea__author">{props.userName}</span>)
+          </p>
         </div>
         <div className="Idea__upvotes">{props.upvotes}</div>
-      </span>
+      </div>
       <p className="Idea__explanation">{nl2br(props.explanation)}</p>
     </div>
   );
