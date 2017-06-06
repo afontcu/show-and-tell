@@ -1,8 +1,27 @@
 html {
+  box-sizing: border-box;
   min-height: 100%;
   font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 0.02em;
   color: #212121;
+  padding: 50px 0;
+  background: 
+    linear-gradient(135deg, #f3c22f 25%, transparent 25%) -20px 0,
+    linear-gradient(225deg, #f3c22f 25%, transparent 25%) -20px 0,
+    linear-gradient(315deg, #f3c22f 25%, transparent 25%),
+    linear-gradient(45deg, #f3c22f 25%, transparent 25%);	
+    background-size: 40px 40px;
+    background-color: #f5ce58;  
+}
+
+* {
+    box-sizing: border-box;
+
+    &,
+    &::before,
+    &::after {
+        box-sizing: inherit;
+    }
 }

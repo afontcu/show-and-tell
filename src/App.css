@@ -1,13 +1,14 @@
 .App {
   text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .App__header {
-  background-color: #222;
   padding: 20px;
-  color: white;
 }
 
-.App__intro {
-  font-size: large;
+.App__content {
+  padding: 20px;
 }
