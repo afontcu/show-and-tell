@@ -6,6 +6,10 @@ This project serves as a frontend for the [Idea Manager backend](https://bitbuck
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Get over there to read the full documentation. Here we just left the most important parts for setting up the project.
 
+## Installation
+
+Just `cp .env.sample .env` and configure its values. Then you can just run any of the following scripts (probably `npm start`, though):
+
 ## Available Scripts
 
 In the project directory, you can run:
