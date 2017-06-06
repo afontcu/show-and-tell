@@ -1,38 +1,63 @@
 .Idea {
-    border-bottom: 1px solid #ddd;
-    padding: 20px;
+    border-bottom: 4px solid #cdcdcd;
+    padding: 25px;
+    background-color: #f1f1f2;
+    margin-bottom: 6px;
 }
 
 .Idea:hover {
     cursor: pointer;
     background-color: #e1e1e2;
+    border-bottom: 4px solid transparent;
 }
 
-.Idea:last-of-type {
-    border-bottom: 0;
+
+.Idea--upvoted .Idea__upvotes,
+.Idea--upvoted:hover .Idea__upvotes{
+    color: green;
+    position: relative;
 }
 
-.Idea--upvoted,
-.Idea--upvoted:hover {
-    background-color: green;
-    color: white;
-}
-
-.Idea--upvoted .Idea__upvotes {
-    color: white;
+.Idea--upvoted .Idea__upvotes::after,
+.Idea--upvoted:hover .Idea__upvotes::after{
+    content: "Voted!";
+    position: absolute;
+    top: 45px;
+    font-size: 0.4em;
+    left: -12px;
+    transform: rotate(-8deg);
 }
 
 .Idea__header {
     display: flex;
-    align-items: center;
+    align-items: left;
+    font-size: 1.3em;
+    color: #aaa;
 }
 
 .Idea__author {
-    
+    text-align: left;
+    font-size: 0.8em;
+    margin-top: 10px;
+    display: block;
+    font-style: italic;
+}
+
+.Idea__author strong {
+    color: #888;
+    font-style: normal;
 }
 
 .Idea__summary {
+    font-weight: bold;
+    color: #660000;
+    text-align: left;
+}
 
+.Idea__explanation {
+    text-align: left;
+    margin-top: 25px;
+    line-height: 1.4;
 }
 
 .Idea__upvotes {
