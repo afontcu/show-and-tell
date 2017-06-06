@@ -8,7 +8,7 @@ import Header from './components/Header';
 const client = new ApolloClient({
   dataIdFromObject: (o => o.id),
   networkInterface: createNetworkInterface({
-    uri: 'http://localhost:8000/graphql'
+    uri: process.env.REACT_APP_APOLLO_CLIENT_URI
   }),
 });
 
